@@ -67,16 +67,24 @@ class Node :
     def __str__(self):
         return f"{self.key} {self.parent} {self.g} {self.f}"
 
-o = Node('a','s',1,7)
-q.put(o)
-o = Node('d','s',2,5)
-q.put(o)
-o = Node('c','a',3,4)
-q.put(o)
-o = Node('c','a',3,4)
-q.put(o)
 
+pa = None
+o = Node('a',pa,1,7)
+q.put(o)
+o = Node('d',o,2,5)
+q.put(o)
+# q.put(o)
+# o = Node('c','a',3,4)
+# q.put(o)
+# o = Node('c','a',3,4)
+# q.put(o)
 
-while not q.empty():
-    p = q.get()
-    print(p)
+temp = q.get()
+# print(temp.key)
+# temp = temp.parent
+# print(temp.key)
+
+while temp is not None:
+    print(temp.key)
+    temp = temp.parent
+

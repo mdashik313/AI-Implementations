@@ -20,6 +20,30 @@
 # S      (start-state)
 # G      (goal-state)
 
+# ans
+# path :  S --> C --> G
+# cost :  6
+
+# test case:
+# 5
+# S 1 2
+# A 2 2
+# C 1 1
+# D 2 2
+# G 4 5
+# 7
+# S A 7
+# A G 1
+# S G 10
+# C A 2
+# D G 1
+# S C 1
+# S D 1
+# S
+# G
+# path :  S --> D --> G
+# cost :  2
+
 
 from queue import PriorityQueue
 
@@ -115,50 +139,36 @@ class Node :
     def __eq__(self, other):
         return self.key==other.key and self.parent==other.parent \
              and self.f==other.f and self.g==other.g 
-
+    def __str__(self):
+        return f"{self.key} {self.parent} {self.g} {self.f}"
     
 def AStarSearch():
     q = PriorityQueue()
-    cumulativeCost[start] = 0
-    node_tuple = (cumulativeCost[start]+heuristic[start],start)
-    
-    q.put(node_tuple)
+    start_node = Node(start,None,0,heuristic[start])
+    q.put(start_node)
 
     while not q.empty() :
         curr = q.get()
-        print(curr)
-        if curr[1]==goal :
+        if curr.key==goal :
             #print path and cost
+            cost = curr.g
             path = goal
-            temp = goal
-            while temp != start :
-                path = parentNode[temp] + ' --> ' + path
-                temp = parentNode[temp]
+            temp = curr.parent
+            while temp is not None :
+                path = temp.key + ' --> ' + path
+                temp = temp.parent
             print('path : ',path)
-            print('cost : ',cumulativeCost[goal])
+            print('cost : ',cost)
             return
         
-        neighbours = adjlist[curr[1]] #get neighbours of current node
+        neighbours = adjlist[curr.key] #get neighbours of current node
         for neighbour in neighbours :
-            
-            #update cumulative cost of neighbour
-            if neighbour[0] not in cumulativeCost:
-                cumulativeCost[neighbour[0]] = int
-            cumulativeCost[neighbour[0]] = cumulativeCost[curr[1]] + int(neighbour[1])  # neighbour[0] = neighbour name, neighbour[1] = weight
-            
-            #track parent node
-            parentNode[neighbour[0]] = curr[1]
-
-            node_tuple = (cumulativeCost[neighbour[0]]+heuristic[neighbour[0]],neighbour[0])
-            q.put(node_tuple)
+            neighbourNode = Node(neighbour[0],curr,curr.g+int(neighbour[1]),curr.g+int(neighbour[1])+heuristic[neighbour[0]])            
+           
+            q.put(neighbourNode)
 
 
 
 calcHeuristic()
-print(heuristic)
-print(adjlist)
 AStarSearch()
-
-# while not q.empty() :
-#     print(q.get())
 
