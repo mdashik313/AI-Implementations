@@ -102,6 +102,21 @@ def calcHeuristic():
         heuristic[key] = ((nodes[key][0]-nodes[goal][0])**2+(nodes[key][1]-nodes[goal][1])**2)**0.5
 
 
+class Node :
+    def __init__(self, key, parent, g, f):
+        self.key = key
+        self.parent = parent
+        self.g = g
+        self.f = f
+    
+    def __lt__(self, other):
+        return self.f < other.f
+    
+    def __eq__(self, other):
+        return self.key==other.key and self.parent==other.parent \
+             and self.f==other.f and self.g==other.g 
+
+    
 def AStarSearch():
     q = PriorityQueue()
     cumulativeCost[start] = 0

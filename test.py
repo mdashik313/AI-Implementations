@@ -51,20 +51,30 @@ q = PriorityQueue()
 
 
 #class
+class Node :
+    def __init__(self, key, parent, g, f):
+        self.key = key
+        self.parent = parent
+        self.g = g
+        self.f = f
+    
+    def __lt__(self, other):
+        return self.f < other.f
+    
+    def __eq__(self, other):
+        return self.key==other.key and self.parent==other.parent \
+             and self.f==other.f and self.g==other.g 
+    def __str__(self):
+        return f"{self.key} {self.parent} {self.g} {self.f}"
 
-class Person:
-  def __init__(self, age, name):
-    self.name = name
-    self.age = age
-
-  def __str__(self):
-    return f"{self.age} {self.name}"
-
-p = Person(5,'s')
-q.put(p)
-p = Person(2,'2ss')
-q.put(p)
-
+o = Node('a','s',1,7)
+q.put(o)
+o = Node('d','s',2,5)
+q.put(o)
+o = Node('c','a',3,4)
+q.put(o)
+o = Node('c','a',3,4)
+q.put(o)
 
 
 while not q.empty():
