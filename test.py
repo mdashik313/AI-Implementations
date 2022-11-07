@@ -1,0 +1,72 @@
+from queue import PriorityQueue
+
+
+dict = {}
+
+dict['k'] = 2
+s = 'as'
+i = 5
+dict['k'] = (s, i)
+
+# print(dict['k'], type(dict['k'][0]), type(dict['k'][1]))
+
+l = {}
+li = [('d',5),('e',9)]
+k = 'g'
+
+# if k not in l :
+#     l[k] = list()
+# l[k].extend(li)
+# print(l)
+
+# if k not in l :
+#     l[k] = int
+# l[k]=2
+# print(l)
+
+# if ('e',9) not in l[k]:
+#     l[k].extend([('e',9)])
+# l[k].extend([('e',9)])
+# l['s'] = []
+# l['s'].extend([('a',29)])
+# l['s'].extend([('d',23)])
+
+# for node in l['s']:
+#     print(node[1])
+
+a = 16
+
+# print(a** 0.5)
+
+q = PriorityQueue()
+
+# q.put((13,'a'))
+# q.put((2,'c'))
+# q.put((3,'d'))
+# q.put((4,'e'))
+
+# while not q.empty():
+#     el = q.get()
+#     print(el[0])
+
+
+#class
+
+class Person:
+  def __init__(self, age, name):
+    self.name = name
+    self.age = age
+
+  def __str__(self):
+    return f"{self.age} {self.name}"
+
+p = Person(5,'s')
+q.put(p)
+p = Person(2,'2ss')
+q.put(p)
+
+
+
+while not q.empty():
+    p = q.get()
+    print(p)
