@@ -126,3 +126,5 @@ temp = copy.deepcopy(board)
 soln = HillClimbing(temp,row,col)
 
 print('\nsolution',soln[0], 'h =', soln[1])
+print('Iteration : ',itr)
+
